@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Quiz App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <section id="welcomeScreen" class="welcome-screen">
+      <h1>Tech Quiz</h1>
+      <p class="subtitle">Test your knowledge on web technologies</p>
+      <button id="startBtn" class="start-btn">Start Quiz</button>
+    </section>
+
+    <section id="quizContainer" class="quiz-container hidden">
+      <div class="quiz-header">
+        <span id="liveScore" class="live-score">Score: 0</span>
+        <button id="soundToggle" class="sound-toggle" title="Toggle sound" aria-label="Toggle sound">🔊</button>
+      </div>
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+      </div>
+      <p id="questionNumber" class="question-number">Question 1</p>
+      <p id="question" class="question-text"></p>
+      <div id="options" class="options"></div>
+      <div class="nav-row">
+        <span id="progressText" class="question-number"></span>
+        <button id="nextBtn" class="next-btn" disabled>Next</button>
+      </div>
+    </section>
+
+    <section id="resultContainer" class="result-container hidden">
+      <h2>Quiz Complete!</h2>
+      <p class="score-display" id="score"></p>
+      <p id="resultMessage" class="result-message"></p>
+      <div id="recapList" class="recap-list"></div>
+      <button id="restartBtn" class="restart-btn">Try Again</button>
+    </section>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
