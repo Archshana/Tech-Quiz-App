@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg-dark: #0f0f14;
+  --bg-card: #18181f;
+  --bg-hover: #22222c;
+  --accent: #00d4aa;
+  --accent-dim: #00d4aa33;
+  --accent-glow: #00d4aa66;
+  --text: #e8e8ed;
+  --text-muted: #8b8b9a;
+  --correct: #22c55e;
+  --incorrect: #ef4444;
+  --border: #2a2a35;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-dim), transparent),
+    radial-gradient(circle at 80% 80%, #1a1a2433, transparent);
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 560px;
+}
+
+/* Welcome / Start Screen */
+.welcome-screen {
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.welcome-screen h1 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--text) 0%, var(--text-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.welcome-screen .subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.start-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 2.5rem;
+  background: var(--accent);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+.start-btn:active {
+  transform: translateY(0);
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #00f5c4);
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+
+/* Quiz Container */
+.quiz-container {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.live-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.sound-toggle {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sound-toggle:hover {
+  border-color: var(--accent);
+}
+
+.sound-toggle.muted {
+  opacity: 0.6;
+}
+
+.question-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.question-text {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.option-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  text-align: left;
+  padding: 1rem 1.25rem;
+  background: var(--bg-card);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.option-btn:hover:not(.disabled) {
+  border-color: var(--accent);
+  background: var(--bg-hover);
+}
+
+.option-btn.correct {
+  border-color: var(--correct);
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--correct);
+}
+
+.option-btn.incorrect {
+  border-color: var(--incorrect);
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--incorrect);
+}
+
+.option-btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.next-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.next-btn:hover {
+  transform: translateY(-1px);
+}
+
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Result Screen */
+.result-container {
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.result-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.result-container .score-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), #00f5c4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 1rem 0;
+}
+
+.result-message {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.recap-list {
+  text-align: left;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  font-size: 0.9rem;
+}
+
+.recap-item {
+  background: var(--bg-card);
+  border-left: 3px solid var(--incorrect);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.recap-item .recap-question {
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.recap-item .recap-answer {
+  color: var(--correct);
+}
+
+.restart-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.restart-btn:hover {
+  background: var(--accent);
+  color: var(--bg-dark);
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+.option-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
